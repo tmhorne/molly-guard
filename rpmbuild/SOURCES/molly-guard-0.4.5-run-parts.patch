@@ -1,0 +1,23 @@
+diff -Nru -Nru molly-guard-0.4.5.orig/shutdown.in molly-guard-0.4.5/shutdown.in
+--- molly-guard-0.4.5.orig/shutdown.in	2012-02-23 22:59:43.000000000 +0000
++++ molly-guard-0.4.5/shutdown.in	2012-06-02 23:45:54.535488618 +0100
+@@ -5,6 +5,10 @@
+ # Copyright © martin f. krafft <madduck@madduck.net>
+ # Released under the terms of the Artistic Licence 2.0
+ #
++# 2012-06-02: Lazarus Long <lazarus.long@bigfoot.com>
++#  - Modified to run under RedHat systems: replaced run-parts with
++#    a find statement (run-parts on RedHat systems is crippled)
++#
+ set -eu
+ 
+ ME=molly-guard
+@@ -106,7 +110,7 @@
+ MOLLYGUARD_DO_NOTHING=$DO_NOTHING; export MOLLYGUARD_DO_NOTHING
+ MOLLYGUARD_SETTINGS="@ETCDIR@/rc"; export MOLLYGUARD_SETTINGS
+ 
+-for script in $(run-parts --test $SCRIPTSDIR); do
++for script in $(find $SCRIPTSDIR -maxdepth 1 -executable -type f ! -name "*\.*"); do
+   ret=0
+   eval $script $SCRIPTARGS || ret=$?
+   if [ $ret -ne 0 ]; then

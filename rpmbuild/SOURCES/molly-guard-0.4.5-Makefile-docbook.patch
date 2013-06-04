@@ -1,0 +1,12 @@
+diff -Nru -Nru molly-guard-0.4.5.orig/Makefile molly-guard-0.4.5/Makefile
+--- molly-guard-0.4.5.orig/Makefile	2012-02-23 22:59:43.000000000 +0000
++++ molly-guard-0.4.5/Makefile	2012-06-03 01:41:03.647330113 +0100
+@@ -5,7 +5,7 @@
+ 
+ all: molly-guard.8.gz shutdown
+ 
+-%.8: DB2MAN=/usr/share/sgml/docbook/stylesheet/xsl/nwalsh/manpages/docbook.xsl
++%.8: DB2MAN=/usr/share/sgml/docbook/xsl-stylesheets/manpages/docbook.xsl
+ %.8: XP=xsltproc -''-nonet
+ %.8: %.xml
+ 	$(XP) $(DB2MAN) $<

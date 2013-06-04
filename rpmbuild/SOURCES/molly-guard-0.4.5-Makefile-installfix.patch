@@ -1,0 +1,17 @@
+diff molly-guard-0.4.5.orig/Makefile molly-guard-0.4.5/Makefile
+--- molly-guard-0.4.5.orig/Makefile	2012-02-23 22:59:43.000000000 +0000
++++ molly-guard-0.4.5/Makefile	2012-06-03 02:43:15.543244498 +0100
+@@ -28,5 +28,5 @@
+ install: shutdown molly-guard.8.gz
+ 	mkdir -m755 --parent $(DST)/share/molly-guard
+-	install -m755 -oroot -oroot shutdown $(DST)/share/molly-guard
++	install -m755 -oroot -groot shutdown $(DST)/share/molly-guard
+ 
+ 	mkdir -m755 --parent $(DST)/sbin
+@@ -37,5 +37,5 @@
+ 
+ 	mkdir -m755 --parent $(ETCDIR)
+-	install -m644 -oroot -oroot rc $(ETCDIR)
++	install -m644 -oroot -groot rc $(ETCDIR)
+ 	cp -r run.d $(ETCDIR) \
+ 	  && chown root.root $(ETCDIR)/run.d && chmod 755 $(ETCDIR)/run.d

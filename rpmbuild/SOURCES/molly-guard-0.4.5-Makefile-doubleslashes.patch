@@ -1,0 +1,12 @@
+diff -Nru -Nru molly-guard-0.4.5.orig/Makefile molly-guard-0.4.5/Makefile
+--- molly-guard-0.4.5.orig/Makefile	2012-02-23 22:59:43.000000000 +0000
++++ molly-guard-0.4.5/Makefile	2012-06-03 01:41:03.647330113 +0100
+@@ -23,7 +23,7 @@
+ .PHONY: clean
+ 
+ shutdown: shutdown.in
+-	sed -e 's,@ETCDIR@,$(ETCDIR),g' $< > $@
++	sed -e 's,@ETCDIR@,$(ETCDIR),g;s,//,/,g' $< > $@
+ 
+ install: shutdown molly-guard.8.gz
+ 	mkdir -m755 --parent $(DST)/share/molly-guard

@@ -1,0 +1,22 @@
+--- molly-guard-0.4.5.orig/shutdown.in	2012-10-25 23:00:37.091556684 +0100
++++ molly-guard-0.4.5/shutdown.in	2012-10-25 23:07:16.018512696 +0100
+@@ -9,6 +9,10 @@
+ #  - Modified to run under RedHat systems: replaced run-parts with
+ #    a find statement (run-parts on RedHat systems is crippled)
+ #
++# 2012-10-25: Lazarus Long <lazarus.long@bigfoot.com>
++#  - Modified the find statement to run under RedHat EL version 5
++#    (the -executable option isn't known to find in EL 5)
++#
+ set -eu
+ 
+ ME=molly-guard
+@@ -110,7 +114,7 @@
+ MOLLYGUARD_DO_NOTHING=$DO_NOTHING; export MOLLYGUARD_DO_NOTHING
+ MOLLYGUARD_SETTINGS="@ETCDIR@/rc"; export MOLLYGUARD_SETTINGS
+ 
+-for script in $(find $SCRIPTSDIR -maxdepth 1 -executable -type f ! -name "*\.*"); do
++for script in $(find $SCRIPTSDIR -maxdepth 1 -type f -perm /0111 ! -name "*\.*"); do
+   ret=0
+   eval $script $SCRIPTARGS || ret=$?
+   if [ $ret -ne 0 ]; then
